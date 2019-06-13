@@ -5,7 +5,8 @@ const express = require("express"),
 	  mongoose = require("mongoose");
 
 // module activation and linking
-mongoose.connect("mongodb://localhost:27017/wdb_blog", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost:27017/wdb_blog", { useNewUrlParser: true });
+// Set up MongoDB/mongoos using ATLAS to make it server-independent
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -13,6 +14,9 @@ app.use(express.static("public"));
 // Schema and model
 
 // INDEX Overall blog page
+app.get('/blog', function(req, res){
+	res.render("index");
+});
 // SHOW Shows more info about a single blog post
 // NEW Form to add a new blog post
 // CREATE Add blog post
