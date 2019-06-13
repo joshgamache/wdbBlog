@@ -1,0 +1,25 @@
+{
+  "name": "blog",
+  "version": "0.0.0",
+  "description": "A simple blog app -- Built for the Web Developer Bootcamp",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Infiniwild/wdbBlog.git"
+  },
+  "author": "Infiniwild",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Infiniwild/wdbBlog/issues"
+  },
+  "homepage": "https://github.com/Infiniwild/wdbBlog#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.5.15"
+  }
+}
