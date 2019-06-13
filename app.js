@@ -19,8 +19,6 @@ app.set("view engine", "ejs");
 // UPDATE Change the existing post
 // DESTROY Delete the existing post
 
-
-
 // Server start!
 app.listen(3000, function(){
 	console.log("The blog app server has started!");
