@@ -11,9 +11,8 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 const mongoURI = "mongodb+srv://devidle:" + process.env.MDBauth + "@cluster0-jcmtm.mongodb.net/test?retryWrites=true&w=majority";
-console.log(mongoURI);
 
-// Set up MongoDB/mongoos using ATLAS to make it server-independent
+// Set up MongoDB/mongoos using ATLAS to make it server-independent (code pulled from MongoDB atlas page )
 mongoose.connect(mongoURI, { useNewUrlParser: true },).then(() => {
 	console.log('Connected to DB!');
 }).catch(err => {
