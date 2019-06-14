@@ -10,12 +10,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
-const mongoURL = "mongodb+srv://devidle:" + process.env.MDBauth + "@cluster0-jcmtm.mongodb.net/test?retryWrites=true&w=majority";
+const mongoURI = "mongodb+srv://devidle:" + process.env.MDBauth + "@cluster0-jcmtm.mongodb.net/test?retryWrites=true&w=majority";
+console.log(mongoURI);
 
 // Set up MongoDB/mongoos using ATLAS to make it server-independent
-mongoose.connect(mongoURL, 	useNewUrlParser: true,
-	useCreateIndex: true
-}).then(() => {
+mongoose.connect(mongoURI, { useNewUrlParser: true },).then(() => {
 	console.log('Connected to DB!');
 }).catch(err => {
 	console.log('ERROR:', err.message);
@@ -23,7 +22,9 @@ mongoose.connect(mongoURL, 	useNewUrlParser: true,
 
 
 // Schema and model
-
+app.get('/', function(req, res){
+    res.redirect('/blog');
+})
 // INDEX Overall blog page
 app.get('/blog', function(req, res){
 	res.render("index");
