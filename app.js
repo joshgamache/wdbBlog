@@ -21,9 +21,19 @@ mongoose.connect(mongoURI, { useNewUrlParser: true },).then(() => {
 
 
 // Schema and model
+const blogSchema = new mongoose.Schema({
+    title: String;
+    image: String;
+    body: String;
+    postCreated: {type: Date, default: Date.now}
+});
+const Blog = mongoose.model("Blog", blogSchema);
+
+// Redirect from main to the app page.
 app.get('/', function(req, res){
     res.redirect('/blog');
 })
+
 // INDEX Overall blog page
 app.get('/blog', function(req, res){
 	res.render("index");
