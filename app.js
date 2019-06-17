@@ -34,9 +34,11 @@ app.get('/', function(req, res){
     res.redirect('/blog');
 })
 
-// INDEX Overall blog page
+// INDEX Overall blog page.
 app.get('/blog', function(req, res){
-	res.render("index");
+Blog.find({},
+
+    res.render("index");
 });
 // SHOW Shows more info about a single blog post
 // NEW Form to add a new blog post
