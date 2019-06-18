@@ -8,8 +8,30 @@
       <h2 class="subtitle">
         One day soon this will show the blog posts that have been made.
       </h2>
-<div class="container">
     <!-- Loop through here -->
+
+<% blogs.forEach(function(blogPost){ %>
+    <div class="card">
+        <div class="card-image">
+            <img src="<%= campground.image %>">
+        </div>
+        <div class="card-header">
+            <div class="card-header-title">
+                <%= campground.title %>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="content">
+                <%= campground.body %>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class ="card-footer-item"><%= campground.postCreated %></div>
+            <a href="" class="card-footer-item">Edit</a>
+            <a href="" class="card-footer-item">Delete</a>
+        </div>
+    </div>
+<% }); %>
 
 
 </div>

@@ -22,9 +22,9 @@ mongoose.connect(mongoURI, { useNewUrlParser: true },).then(() => {
 
 // Schema and model
 const blogSchema = new mongoose.Schema({
-    title: String;
-    image: String;
-    body: String;
+    title: String,
+    image: String,
+    body: String,
     postCreated: {type: Date, default: Date.now}
 });
 const Blog = mongoose.model("Blog", blogSchema);
@@ -32,14 +32,19 @@ const Blog = mongoose.model("Blog", blogSchema);
 // Redirect from main to the app page.
 app.get('/', function(req, res){
     res.redirect('/blog');
-})
+});
 
 // INDEX Overall blog page.
-app.get('/blog', function(req, res){
-Blog.find({},
-
-    res.render("index");
+app.get("/blog", function(req, res){
+    Blog.find({}, function(err, blogs){
+        if(err){
+            console.log("Error! Output: " + err);
+        } else {
+            res.render("index", { blogs: blogs });
+        }
+    });
 });
+
 // SHOW Shows more info about a single blog post
 // NEW Form to add a new blog post
 // CREATE Add blog post
