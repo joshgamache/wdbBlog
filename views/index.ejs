@@ -1,5 +1,5 @@
 <% include partials/header %>
-<section class="hero is-primary is-bold">
+<header class="hero is-primary is-bold">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
@@ -8,34 +8,37 @@
       <h2 class="subtitle">
         One day soon this will show the blog posts that have been made.
       </h2>
-    <!-- Loop through here -->
-
-<% blogs.forEach(function(blogPost){ %>
-    <div class="card">
-        <div class="card-image">
-            <img src="<%= campground.image %>">
-        </div>
-        <div class="card-header">
-            <div class="card-header-title">
-                <%= campground.title %>
-            </div>
-        </div>
-        <div class="card-content">
-            <div class="content">
-                <%= campground.body %>
-            </div>
-        </div>
-        <div class="card-footer">
-            <div class ="card-footer-item"><%= campground.postCreated %></div>
-            <a href="" class="card-footer-item">Edit</a>
-            <a href="" class="card-footer-item">Delete</a>
-        </div>
-    </div>
-<% }); %>
-
-
-</div>
     </div>
   </div>
-</section>
+</header>
+<main class="container">
+  <div class="columns is-centered">
+    <section class="column is-three-quarters">
+        <% blogs.forEach(function(blogPost){ %>
+      <article class="card">
+        <div class="card-image">
+          <figure class="image">
+            <img src="<%= blogPost.image %>" alt="Photos of the city">
+          </figure>
+        </div>
+        <div class="card-header">
+          <div class="card-header-title">
+            <%= blogPost.title %>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="content">
+            <%= blogPost.body %>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-footer-item"><%= blogPost.postCreated %></div>
+          <a href="" class="card-footer-item">Edit</a>
+          <a href="" class="card-footer-item">Delete</a>
+        </div>
+      </article>
+      <% }); %>
+    </section>
+  </div>
+</main>
 <% include partials/footer %>
