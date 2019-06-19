@@ -31,10 +31,20 @@
             <%= blogPost.body %>
           </div>
         </div>
-        <div class="card-footer">
-          <div class="card-footer-item"><%= blogPost.postCreated %></div>
-          <a href="" class="card-footer-item">Edit</a>
-          <a href="" class="card-footer-item">Delete</a>
+        <div class="card-footer level">
+                <div class="level-left">
+                    <div class="level-item">
+                        <p class="button is-light is-static"><%= blogPost.postCreated %></p>
+                    </div>
+                </div>
+            <div class="level-right">
+                <div class="level-item">
+                    <a href="" class="button is-warning">Edit</a>
+                </div>
+                <div class="level-item">
+                    <a href="" class="button is-danger">Delete</a>
+                </div>
+            </div>
         </div>
       </article>
       <% }); %>

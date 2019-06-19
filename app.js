@@ -13,7 +13,7 @@ app.use(express.static("public"));
 const mongoURI = "mongodb+srv://devidle:" + process.env.MDBauth + "@cluster0-jcmtm.mongodb.net/test?retryWrites=true&w=majority";
 
 // Set up MongoDB/mongoos using ATLAS to make it server-independent (code pulled from MongoDB atlas page )
-mongoose.connect(mongoURI, { useNewUrlParser: true },).then(() => {
+mongoose.connect(mongoURI, { useNewUrlParser: true, dbName: "wdbBlog" },).then(() => {
 	console.log('Connected to DB!');
 }).catch(err => {
 	console.log('ERROR:', err.message);
@@ -28,6 +28,24 @@ const blogSchema = new mongoose.Schema({
     postCreated: {type: Date, default: Date.now}
 });
 const Blog = mongoose.model("Blog", blogSchema);
+
+// Used for database testing prior to setup of post
+// Blog.create(
+//      {
+//          title: "Second Post",
+//          image: "https://farm1.staticflickr.com/60/215827008_6489cd30c3.jpg",
+//          body: "This is another blog post. Fingers crossed that it works?"
+
+//      },
+//      function(err, blog){
+//       if(err){
+//           console.log(err);
+//       } else {
+//           console.log("NEWLY CREATED BLOG: ");
+//           console.log(blog);
+//       }
+//     });
+
 
 // Redirect from main to the app page.
 app.get('/', function(req, res){
