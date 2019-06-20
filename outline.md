@@ -18,29 +18,29 @@ This is the outline from the module from the course. I'm going to use this as a 
 - [x] Add Simple Nav
 
 ##Putting the C in CRUD
-- [] Add NEW route
-- [] Add NEW template
-- [] Add CREATE route
-- [] Add CREATE template
+- [x] Add NEW route
+- [x] Add NEW template
+- [ ] Add CREATE route
+- [ ] Add CREATE template
 
 ##SHOWtime
-- [] Add Show route
-- [] Add Show template
-- [] Add links to show page
-- [] Style show template
+- [ ] Add Show route
+- [ ] Add Show template
+- [ ] Add links to show page
+- [ ] Style show template
 
 ##Edit/Update
-- [] Add Edit Route
-- [] Add Edit Form
-- [] Add Update Route
-- [] Add Update Form
-- [] Add Method-Override
+- [ ] Add Edit Route
+- [ ] Add Edit Form
+- [ ] Add Update Route
+- [ ] Add Update Form
+- [ ] Add Method-Override
 
 ##DESTROYYYYYY
-- [] Add Destroy Route
-- [] Add Edit and Destroy Links
+- [ ] Add Destroy Route
+- [ ] Add Edit and Destroy Links
 
 ##Final Updates
-- [] Sanitize blog body
-- [] Style Index
-- [] Update REST Table
+- [ ] Sanitize blog body
+- [ ] Style Index
+- [ ] Update REST Table
