@@ -65,6 +65,9 @@ app.get("/blog", function(req, res){
 
 // SHOW Shows more info about a single blog post
 // NEW Form to add a new blog post
+app.get("/blog/new", (req, res) => {
+    res.render("new");
+});
 // CREATE Add blog post
 // EDIT Form to edit an existing post
 // UPDATE Change the existing post
