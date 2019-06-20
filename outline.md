@@ -20,8 +20,8 @@ This is the outline from the module from the course. I'm going to use this as a 
 ## Putting the C in CRUD
 - [x] Add NEW route
 - [x] Add NEW template
-- [ ] Add CREATE route
-- [ ] Add CREATE template
+- [x] Add CREATE route
+- [x] Add CREATE template
 
 ## SHOWtime
 - [ ] Add Show route
