@@ -69,6 +69,18 @@ app.get("/blog/new", (req, res) => {
     res.render("new");
 });
 // CREATE Add blog post
+app.post("/blog", (req, res) => {
+    const newBlog = {title: req.body.title, image: req.body.image, body: req.body.body}
+
+    Blog.create(newBlog, (err, newlyCreated) => {
+        if (err){
+            console.log(err);
+        } else {
+            console.log(newlyCreated);
+            res.redirect("/blog");
+        }
+    });
+});
 // EDIT Form to edit an existing post
 // UPDATE Change the existing post
 // DESTROY Delete the existing post
