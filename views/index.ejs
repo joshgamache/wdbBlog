@@ -1,42 +1,29 @@
 <% include partials/header %>
 <section class="section">
-<main class="container">
-  <div class="columns is-centered">
-    <section class="column is-three-quarters">
-        <% blogs.forEach(function(blogPost){ %>
-      <article class="card">
-        <div class="card-image">
-          <figure class="image">
-            <img src="<%= blogPost.image %>" alt="Photos of the city">
-          </figure>
+    <main class="container">
+        <div class="columns is-centered">
+            <section class="column is-three-quarters">
+                <% blogs.forEach(function(blogPost){ %>
+                    <article class="media">
+                        <figure class="media-left">
+                            <p class="image is-64x64">
+                                <img src="<%= blogPost.image %>" alt="Blogpost photo">
+                            </p>
+                        </figure>
+                        <div class="media-content">
+                            <div class="content">
+                                <p>
+                                    <strong><%= blogPost.title %></strong> <small> - <%= blogPost.postCreated.toDateString() %></small>
+                                    <br>
+                                    <%= blogPost.body.slice(0, 200) %> <% if(blogPost.body.length > 200){ %>...<% } %>
+                                </p>
+                                <a href="/blog/<%= blogPost._id %>" class="button is-link is-right">More Info</a>
+                            </div>
+                        </div>
+                    </article>
+                <% }); %>
+            </section>
         </div>
-        <div class="card-header">
-          <div class="card-header-title">
-            <%= blogPost.title %>
-          </div>
-        </div>
-        <div class="card-content">
-          <div class="content">
-            <%= blogPost.body %>
-          </div>
-        </div>
-        <div class="card-footer level">
-                <div class="level-left">
-                    <div class="level-item">
-                        <p class="button is-light is-static"><%= blogPost.postCreated.toDateString() %></p>
-                    </div>
-                </div>
-            <div class="level-right">
-                <div class="level-item">
-                    <a href="/blog/<%= blogPost._id %>" class="button is-primary">More Info</a>
-                </div>
-
-            </div>
-        </div>
-      </article>
-      <% }); %>
-    </section>
-  </div>
-</main>
+    </main>
 </section>
 <% include partials/footer %>
