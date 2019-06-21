@@ -70,7 +70,7 @@ app.get("/blog/:id", (req, res) => {
         if(err){
             console.log(err);
         } else {
-            res.render("show", {blog: foundBlog});
+            res.render("show", { blog: foundBlog });
         }
     });
 });

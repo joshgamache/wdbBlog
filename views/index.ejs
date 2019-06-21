@@ -23,16 +23,14 @@
         <div class="card-footer level">
                 <div class="level-left">
                     <div class="level-item">
-                        <p class="button is-light is-static"><%= blogPost.postCreated %></p>
+                        <p class="button is-light is-static"><%= blogPost.postCreated.toDateString() %></p>
                     </div>
                 </div>
             <div class="level-right">
                 <div class="level-item">
-                    <a href="" class="button is-warning">Edit</a>
+                    <a href="/blog/<%= blogPost._id %>" class="button is-primary">More Info</a>
                 </div>
-                <div class="level-item">
-                    <a href="" class="button is-danger">Delete</a>
-                </div>
+
             </div>
         </div>
       </article>
