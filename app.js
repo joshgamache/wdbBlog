@@ -63,18 +63,6 @@ app.get("/blog", function(req, res){
     });
 });
 
-// SHOW Shows more info about a single blog post
-app.get("/blog/:id", (req, res) => {
-    // find the blog post with the given ID
-    Blog.findById(req.params.id, (err, foundBlog) => {
-        if(err){
-            console.log(err);
-        } else {
-            res.render("show", { blog: foundBlog });
-        }
-    });
-});
-
 // NEW Form to add a new blog post
 app.get("/blog/new", (req, res) => {
     res.render("new");
@@ -92,6 +80,19 @@ app.post("/blog", (req, res) => {
         }
     });
 });
+// SHOW Shows more info about a single blog post
+app.get("/blog/:id", (req, res) => {
+    // find the blog post with the given ID
+    Blog.findById(req.params.id, (err, foundBlog) => {
+        if(err){
+            console.log(err);
+        } else {
+            res.render("show", { blog: foundBlog });
+        }
+    });
+});
+
+
 // EDIT Form to edit an existing post
 // UPDATE Change the existing post
 // DESTROY Delete the existing post
