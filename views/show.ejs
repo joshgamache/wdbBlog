@@ -1,0 +1,44 @@
+<% include partials/header %>
+<section class="section">
+    <main class="container">
+        <div class="columns is-centered">
+            <div class="column is-three-quarters">
+                <article class="card">
+                    <div class="card-image">
+                        <figure class="image">
+                            <img src="<%= blog.image %>" alt="Blog post image">
+                        </figure>
+                    </div>
+                    <div class="card-header">
+                        <div class="card-header-title">
+                            <%= blog.title %>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="content">
+                            <%= blog.body %>
+                        </div>
+                    </div>
+                    <div class="card-footer level">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <p class="button is-light is-static is-fullwidth">
+                                    <%= blog.postCreated.toDateString() %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="buttons has-addons">
+                                    <a href="" class="button is-warning">Edit</a>
+                                    <a href="" class="button is-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+</section>
+<% include partials/footer %>
