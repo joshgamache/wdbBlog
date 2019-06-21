@@ -24,10 +24,10 @@ This is the outline from the module from the course. I'm going to use this as a 
 - [x] Add CREATE template
 
 ## SHOWtime
-- [ ] Add Show route
-- [ ] Add Show template
-- [ ] Add links to show page
-- [ ] Style show template
+- [x] Add Show route
+- [x] Add Show template
+- [x] Add links to show page
+- [x] Style show template
 
 ## Edit/Update
 - [ ] Add Edit Route
