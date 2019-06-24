@@ -31,7 +31,9 @@
                             <div class="level-item">
                                 <div class="buttons has-addons">
                                     <a href="/blog/<%= blog._id %>/edit" class="button is-warning">Edit</a>
-                                    <a href="" class="button is-danger">Delete</a>
+                                    <form action="/blog/<%= blog._id %>?_method=DELETE" method="POST">
+                                        <button class="button is-danger">Delete</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
