@@ -114,7 +114,7 @@ app.put("/blog/:id", (req, res) => {
 
     const blogUpdate = {title: req.body.title, image: req.body.image, body: req.body.body}
 
-    Blog.findByIdAndUpdate(req.body._id, blogUpdate, (err, updateBlog) =>
+    Blog.findByIdAndUpdate(req.params.id, blogUpdate, (err, updateBlog) =>
     {
         if (err){
             console.log(err);
