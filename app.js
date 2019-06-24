@@ -14,7 +14,7 @@ app.use(express.static("public"));
 const mongoURI = "mongodb+srv://devidle:" + process.env.MDBauth + "@cluster0-jcmtm.mongodb.net/test?retryWrites=true&w=majority";
 
 // Set up MongoDB/mongoose using ATLAS to make it server-independent (code pulled from MongoDB atlas page )
-mongoose.connect(mongoURI, { useNewUrlParser: true, dbName: "wdbBlog" },).then(() => {
+mongoose.connect(mongoURI, { useNewUrlParser: true, dbName: "wdbBlog", useFindAndModify: false },).then(() => {
 	console.log('Connected to DB!');
 }).catch(err => {
 	console.log('ERROR:', err.message);
@@ -114,13 +114,13 @@ app.put("/blog/:id", (req, res) => {
 
     const blogUpdate = {title: req.body.title, image: req.body.image, body: req.body.body}
 
-    Blog.findByIdAndUpdate(blogUpdate, req.body, (err, updateBlog) =>
+    Blog.findByIdAndUpdate(req.params.id, blogUpdate, (err, updateBlog) =>
     {
         if (err){
             console.log(err);
         } else {
             console.log(updateBlog);
-            res.redirect("/blog/:id");
+            res.redirect("/blog/" + req.params.id);
         }
     });
 });
