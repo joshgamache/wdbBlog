@@ -2,7 +2,8 @@
 const express = require("express"),
 	  app = express(),
 	  bodyParser = require("body-parser"),
-	  mongoose = require("mongoose");
+	  mongoose = require("mongoose"),
+      methodOverride = require('method-override');
 
 // module activation and linking
 // mongoose.connect("mongodb://localhost:27017/wdb_blog", { useNewUrlParser: true });
@@ -19,6 +20,8 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, dbName: "wdbBlog" },).then((
 	console.log('ERROR:', err.message);
 });
 
+// override with POST having ?_method=PUT
+app.use(methodOverride('_method'));
 
 // Schema and model
 const blogSchema = new mongoose.Schema({
@@ -67,6 +70,7 @@ app.get("/blog", function(req, res){
 app.get("/blog/new", (req, res) => {
     res.render("new");
 });
+
 // CREATE Add blog post
 app.post("/blog", (req, res) => {
     const newBlog = {title: req.body.title, image: req.body.image, body: req.body.body}
@@ -80,6 +84,7 @@ app.post("/blog", (req, res) => {
         }
     });
 });
+
 // SHOW Shows more info about a single blog post
 app.get("/blog/:id", (req, res) => {
     // find the blog post with the given ID
@@ -94,7 +99,32 @@ app.get("/blog/:id", (req, res) => {
 
 
 // EDIT Form to edit an existing post
+app.get("/blog/:id/edit", (req, res) => {
+    Blog.findById(req.params.id, (err, foundBlog) => {
+        if(err){
+            console.log(err);
+        } else {
+            res.render("edit", { blog: foundBlog });
+        }
+    });
+});
+
 // UPDATE Change the existing post
+app.put("/blog/:id", (req, res) => {
+
+    const blogUpdate = {title: req.body.title, image: req.body.image, body: req.body.body}
+
+    Blog.findByIdAndUpdate(blogUpdate, req.body, (err, updateBlog) =>
+    {
+        if (err){
+            console.log(err);
+        } else {
+            console.log(updateBlog);
+            res.redirect("/blog/:id");
+        }
+    });
+});
+
 // DESTROY Delete the existing post
 
 // Server start!
