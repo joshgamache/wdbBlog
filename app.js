@@ -126,6 +126,17 @@ app.put("/blog/:id", (req, res) => {
 });
 
 // DESTROY Delete the existing post
+app.delete("/blog/:id/delete", (req, res) => {
+    Blog.findByIdAndDelete(req.params.id, (err) =>{
+        if (err){
+            console.log(err);
+            res.redirect("/blog");
+        } else {
+            res.redirect("/blog");
+        }
+    });
+});
+
 
 // Server start!
 app.listen(3000, function(){
