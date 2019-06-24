@@ -20,7 +20,7 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, dbName: "wdbBlog", useFindAn
 	console.log('ERROR:', err.message);
 });
 
-// override with POST having ?_method=PUT
+// override with POST having ?_method=PUT or ?_method=DELETE
 app.use(methodOverride('_method'));
 
 // Schema and model
@@ -126,6 +126,17 @@ app.put("/blog/:id", (req, res) => {
 });
 
 // DESTROY Delete the existing post
+app.delete("/blog/:id", (req, res) => {
+    Blog.findByIdAndDelete(req.params.id, (err) =>{
+        if (err){
+            console.log(err);
+            res.redirect("/blog");
+        } else {
+            res.redirect("/blog");
+        }
+    });
+});
+
 
 // Server start!
 app.listen(3000, function(){
