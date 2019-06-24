@@ -19,9 +19,10 @@
         <div class="columns is-centered">
             <section class="column is-three-quarters">
                 <% blogs.forEach(function(blogPost){ %>
+                    <div class="box">
                     <article class="media">
                         <figure class="media-left">
-                            <p class="image is-64x64">
+                            <p class="image is-128x128">
                                 <img src="<%= blogPost.image %>" alt="Blogpost photo">
                             </p>
                         </figure>
@@ -32,10 +33,11 @@
                                     <br>
                                     <%= blogPost.body.slice(0, 200) %> <% if(blogPost.body.length > 200){ %>...<% } %>
                                 </p>
-                                <a href="/blog/<%= blogPost._id %>" class="button is-link is-right">More Info</a>
+                                <a href="/blog/<%= blogPost._id %>" class="button is-link is-outlined is-pulled-right">More Info</a>
                             </div>
                         </div>
                     </article>
+                    </div>
                 <% }); %>
             </section>
         </div>
