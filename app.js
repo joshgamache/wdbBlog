@@ -1,23 +1,29 @@
 // included modules
 const express = require("express"),
-	  app = express(),
-	  bodyParser = require("body-parser"),
-	  mongoose = require("mongoose"),
-      methodOverride = require('method-override');
+    app = express(),
+    bodyParser = require("body-parser"),
+    mongoose = require("mongoose"),
+    methodOverride = require('method-override');
 
 // module activation and linking
 // mongoose.connect("mongodb://localhost:27017/wdb_blog", { useNewUrlParser: true });
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 const mongoURI = "mongodb+srv://devidle:" + process.env.MDBauth + "@cluster0-jcmtm.mongodb.net/test?retryWrites=true&w=majority";
 
 // Set up MongoDB/mongoose using ATLAS to make it server-independent (code pulled from MongoDB atlas page )
-mongoose.connect(mongoURI, { useNewUrlParser: true, dbName: "wdbBlog", useFindAndModify: false },).then(() => {
-	console.log('Connected to DB!');
+mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    dbName: "wdbBlog",
+    useFindAndModify: false
+}, ).then(() => {
+    console.log('Connected to DB!');
 }).catch(err => {
-	console.log('ERROR:', err.message);
+    console.log('ERROR:', err.message);
 });
 
 // override with POST having ?_method=PUT or ?_method=DELETE
@@ -28,7 +34,10 @@ const blogSchema = new mongoose.Schema({
     title: String,
     image: String,
     body: String,
-    postCreated: {type: Date, default: Date.now}
+    postCreated: {
+        type: Date,
+        default: Date.now
+    }
 });
 const Blog = mongoose.model("Blog", blogSchema);
 
@@ -51,17 +60,19 @@ const Blog = mongoose.model("Blog", blogSchema);
 
 
 // Redirect from main to the app page.
-app.get('/', function(req, res){
+app.get('/', function (req, res) {
     res.redirect('/blog');
 });
 
 // INDEX Overall blog page.
-app.get("/blog", function(req, res){
-    Blog.find({}, function(err, blogs){
-        if(err){
+app.get("/blog", function (req, res) {
+    Blog.find({}, function (err, blogs) {
+        if (err) {
             console.log("Error! Output: " + err);
         } else {
-            res.render("index", { blogs: blogs });
+            res.render("index", {
+                blogs: blogs
+            });
         }
     });
 });
@@ -73,10 +84,14 @@ app.get("/blog/new", (req, res) => {
 
 // CREATE Add blog post
 app.post("/blog", (req, res) => {
-    const newBlog = {title: req.body.title, image: req.body.image, body: req.body.body}
+    const newBlog = {
+        title: req.body.title,
+        image: req.body.image,
+        body: req.body.body
+    }
 
     Blog.create(newBlog, (err, newlyCreated) => {
-        if (err){
+        if (err) {
             console.log(err);
         } else {
             console.log(newlyCreated);
@@ -89,10 +104,12 @@ app.post("/blog", (req, res) => {
 app.get("/blog/:id", (req, res) => {
     // find the blog post with the given ID
     Blog.findById(req.params.id, (err, foundBlog) => {
-        if(err){
+        if (err) {
             console.log(err);
         } else {
-            res.render("show", { blog: foundBlog });
+            res.render("show", {
+                blog: foundBlog
+            });
         }
     });
 });
@@ -101,10 +118,12 @@ app.get("/blog/:id", (req, res) => {
 // EDIT Form to edit an existing post
 app.get("/blog/:id/edit", (req, res) => {
     Blog.findById(req.params.id, (err, foundBlog) => {
-        if(err){
+        if (err) {
             console.log(err);
         } else {
-            res.render("edit", { blog: foundBlog });
+            res.render("edit", {
+                blog: foundBlog
+            });
         }
     });
 });
@@ -112,11 +131,14 @@ app.get("/blog/:id/edit", (req, res) => {
 // UPDATE Change the existing post
 app.put("/blog/:id", (req, res) => {
 
-    const blogUpdate = {title: req.body.title, image: req.body.image, body: req.body.body}
+    const blogUpdate = {
+        title: req.body.title,
+        image: req.body.image,
+        body: req.body.body
+    }
 
-    Blog.findByIdAndUpdate(req.params.id, blogUpdate, (err, updateBlog) =>
-    {
-        if (err){
+    Blog.findByIdAndUpdate(req.params.id, blogUpdate, (err, updateBlog) => {
+        if (err) {
             console.log(err);
         } else {
             console.log(updateBlog);
@@ -127,8 +149,8 @@ app.put("/blog/:id", (req, res) => {
 
 // DESTROY Delete the existing post
 app.delete("/blog/:id", (req, res) => {
-    Blog.findByIdAndDelete(req.params.id, (err) =>{
-        if (err){
+    Blog.findByIdAndDelete(req.params.id, (err) => {
+        if (err) {
             console.log(err);
             res.redirect("/blog");
         } else {
@@ -139,6 +161,6 @@ app.delete("/blog/:id", (req, res) => {
 
 
 // Server start!
-app.listen(3000, function(){
-	console.log("The blog app server has started!");
+app.listen(3000, function () {
+    console.log("The blog app server has started!");
 });
