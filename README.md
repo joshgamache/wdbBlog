@@ -9,6 +9,7 @@ Built on a **MEN** stack (no React or Angular), utilizing RESTful architecture. 
 - express
 - mongoose
 - body-parser
+- method-override
 
 ## Frameworks
 
