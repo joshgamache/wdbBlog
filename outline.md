@@ -30,15 +30,15 @@ This is the outline from the module from the course. I'm going to use this as a 
 - [x] Style show template
 
 ## Edit/Update
-- [ ] Add Edit Route
-- [ ] Add Edit Form
-- [ ] Add Update Route
-- [ ] Add Update Form
-- [ ] Add Method-Override
+- [x] Add Edit Route
+- [x] Add Edit Form
+- [x] Add Update Route
+- [x] Add Update Form
+- [x] Add Method-Override
 
 ## DESTROYYYYYY
-- [ ] Add Destroy Route
-- [ ] Add Edit and Destroy Links
+- [x] Add Destroy Route
+- [x] Add Edit and Destroy Links
 
 ## Final Updates
 - [ ] Sanitize blog body
