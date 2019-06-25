@@ -21,3 +21,4 @@ After putting together the full set of RESTful routes, I'm going to review the c
 
 ### Post course
 
+- Revisit form fiends names. use format `name="blog[title]"` rather than the old `name="title"`. This will allow the form data to be pulled directly into the database, rather than having an intermediary object.
