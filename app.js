@@ -84,13 +84,7 @@ app.get("/blog/new", (req, res) => {
 
 // CREATE Add blog post
 app.post("/blog", (req, res) => {
-    const newBlog = {
-        title: req.body.title,
-        image: req.body.image,
-        body: req.body.body
-    }
-
-    Blog.create(newBlog, (err, newlyCreated) => {
+    Blog.create(res.body.blog, (err, newlyCreated) => {
         if (err) {
             console.log(err);
         } else {
@@ -130,14 +124,7 @@ app.get("/blog/:id/edit", (req, res) => {
 
 // UPDATE Change the existing post
 app.put("/blog/:id", (req, res) => {
-
-    const blogUpdate = {
-        title: req.body.title,
-        image: req.body.image,
-        body: req.body.body
-    }
-
-    Blog.findByIdAndUpdate(req.params.id, blogUpdate, (err, updateBlog) => {
+    Blog.findByIdAndUpdate(req.params.id, res.body.blog, (err, updateBlog) => {
         if (err) {
             console.log(err);
         } else {
