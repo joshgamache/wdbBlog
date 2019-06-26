@@ -3,7 +3,8 @@ const express = require("express"),
     app = express(),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
-    methodOverride = require('method-override');
+    methodOverride = require('method-override'),
+    expressSanitizer = require('express-sanitizer');
 
 // module activation and linking
 // mongoose.connect("mongodb://localhost:27017/wdb_blog", { useNewUrlParser: true });
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+app.use(expressSanitizer());
 
 const mongoURI = "mongodb+srv://devidle:" + process.env.MDBauth + "@cluster0-jcmtm.mongodb.net/test?retryWrites=true&w=majority";
 
@@ -84,6 +86,7 @@ app.get("/blog/new", (req, res) => {
 
 // CREATE Add blog post
 app.post("/blog", (req, res) => {
+    req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.create(res.body.blog, (err, newlyCreated) => {
         if (err) {
             console.log(err);
@@ -124,6 +127,7 @@ app.get("/blog/:id/edit", (req, res) => {
 
 // UPDATE Change the existing post
 app.put("/blog/:id", (req, res) => {
+    req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.findByIdAndUpdate(req.params.id, res.body.blog, (err, updateBlog) => {
         if (err) {
             console.log(err);
