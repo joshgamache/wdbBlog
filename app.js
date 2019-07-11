@@ -66,7 +66,7 @@ app.get("/blog/new", (req, res) => {
 // CREATE Add blog post
 app.post("/blog", (req, res) => {
     req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.create(res.body.blog, (err, newlyCreated) => {
+    Blog.create(req.body.blog, (err, newlyCreated) => {
         if (err) {
             console.log(err);
         } else {
@@ -107,7 +107,7 @@ app.get("/blog/:id/edit", (req, res) => {
 // UPDATE Change the existing post
 app.put("/blog/:id", (req, res) => {
     req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.findByIdAndUpdate(req.params.id, res.body.blog, (err, updateBlog) => {
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updateBlog) => {
         if (err) {
             console.log(err);
         } else {
