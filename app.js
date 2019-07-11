@@ -7,17 +7,14 @@ const express = require("express"),
     expressSanitizer = require('express-sanitizer');
 
 // module activation and linking
-// mongoose.connect("mongodb://localhost:27017/wdb_blog", { useNewUrlParser: true });
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(expressSanitizer());
 
-const mongoURI = "mongodb+srv://devidle:" + process.env.MDBauth + "@cluster0-jcmtm.mongodb.net/test?retryWrites=true&w=majority";
 
 // Set up MongoDB/mongoose using ATLAS to make it server-independent (code pulled from MongoDB atlas page )
+const mongoURI = "mongodb+srv://devidle:" + process.env.MDBauth + "@cluster0-jcmtm.mongodb.net/test?retryWrites=true&w=majority";
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     dbName: "wdbBlog",
@@ -43,32 +40,14 @@ const blogSchema = new mongoose.Schema({
 });
 const Blog = mongoose.model("Blog", blogSchema);
 
-// Used for database testing prior to setup of post
-// Blog.create(
-//      {
-//          title: "Second Post",
-//          image: "https://farm1.staticflickr.com/60/215827008_6489cd30c3.jpg",
-//          body: "This is another blog post. Fingers crossed that it works?"
-
-//      },
-//      function(err, blog){
-//       if(err){
-//           console.log(err);
-//       } else {
-//           console.log("NEWLY CREATED BLOG: ");
-//           console.log(blog);
-//       }
-//     });
-
-
 // Redirect from main to the app page.
 app.get('/', function (req, res) {
     res.redirect('/blog');
 });
 
 // INDEX Overall blog page.
-app.get("/blog", function (req, res) {
-    Blog.find({}, function (err, blogs) {
+app.get("/blog", (req, res) => {
+    Blog.find({}, (err, blogs) => {
         if (err) {
             console.log("Error! Output: " + err);
         } else {
@@ -87,7 +66,7 @@ app.get("/blog/new", (req, res) => {
 // CREATE Add blog post
 app.post("/blog", (req, res) => {
     req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.create(res.body.blog, (err, newlyCreated) => {
+    Blog.create(req.body.blog, (err, newlyCreated) => {
         if (err) {
             console.log(err);
         } else {
@@ -128,7 +107,7 @@ app.get("/blog/:id/edit", (req, res) => {
 // UPDATE Change the existing post
 app.put("/blog/:id", (req, res) => {
     req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.findByIdAndUpdate(req.params.id, res.body.blog, (err, updateBlog) => {
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updateBlog) => {
         if (err) {
             console.log(err);
         } else {
@@ -152,6 +131,6 @@ app.delete("/blog/:id", (req, res) => {
 
 
 // Server start!
-app.listen(3000, function () {
+app.listen(3000, () => {
     console.log("The blog app server has started!");
 });
