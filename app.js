@@ -6,6 +6,9 @@ const express = require("express"),
     methodOverride = require('method-override'),
     expressSanitizer = require('express-sanitizer');
 
+// Constant for environment variables and bindings
+const PORT = process.env.PORT || 3000;
+
 // module activation and linking
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -14,7 +17,7 @@ app.use(expressSanitizer());
 
 
 // Set up MongoDB/mongoose using ATLAS to make it server-independent (code pulled from MongoDB atlas page )
-const mongoURI = "mongodb+srv://devidle:" + process.env.MDBauth + "@cluster0-jcmtm.mongodb.net/test?retryWrites=true&w=majority";
+const mongoURI = process.env.databaseURL;
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     dbName: "wdbBlog",
@@ -131,6 +134,6 @@ app.delete("/blog/:id", (req, res) => {
 
 
 // Server start!
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("The blog app server has started!");
 });
