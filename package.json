@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Infiniwild/wdbBlog.git"
+    "url": "git+https://github.com/joshgamache/wdbBlog.git"
   },
   "author": "Infiniwild",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Infiniwild/wdbBlog/issues"
+    "url": "https://github.com/joshgamache/wdbBlog/issues"
   },
-  "homepage": "https://github.com/Infiniwild/wdbBlog#readme",
+  "homepage": "https://github.com/joshgamache/wdbBlog#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "bulma": "^0.7.5",
